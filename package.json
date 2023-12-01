@@ -1,0 +1,32 @@
+{
+  "name": "aoc2023",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/scripts/main.js",
+  "scripts": {
+    "build": "tsc",
+    "input": "node build/scripts/fetchInput.js",
+    "start": "node build/scripts/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "baconjs": "^3.0.17",
+    "dayjs": "^1.11.10",
+    "dotenv": "^16.3.1",
+    "lodash-es": "^4.17.21",
+    "rxjs": "^7.8.1",
+    "zx": "^7.2.3"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.10.1",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=21"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "ESNext",
+    "module": "NodeNext",
+    "rootDir": "./src",
+    "outDir": "./build",
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+}
