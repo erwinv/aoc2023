@@ -1,5 +1,6 @@
 /node_modules/
-/build/
+/html/
+/coverage/
 /inputs/*
 !/inputs/.gitkeep
 /.env
