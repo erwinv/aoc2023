@@ -32,8 +32,6 @@ export async function fetchInput(day: D) {
   return Readable.fromWeb(response.body)
 }
 
-export async function cacheInput(day: D) {}
-
 export async function getInputFile(day: D) {
   const file = `inputs/${day}.txt`
 
