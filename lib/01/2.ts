@@ -1,5 +1,6 @@
 import * as _ from 'lodash-es'
 import { createInterface } from 'node:readline'
+import { Readable } from 'node:stream'
 
 function firstDigit(line: string) {
   for (let i = 0; i < line.length; i++) {
@@ -62,8 +63,7 @@ function lastDigit(line: string) {
         return '3'
       } else if (line.substring(i - 3, i + 1) === 'five') {
         return '5'
-      }
-      if (line.substring(i - 3, i + 1) === 'nine') {
+      } else if (line.substring(i - 3, i + 1) === 'nine') {
         return '9'
       }
     } else if (char === 'o') {
@@ -92,10 +92,12 @@ function lastDigit(line: string) {
   }
 }
 
-let sum = 0
-for await (const line of createInterface(process.stdin)) {
-  if (!line) continue
+export async function solve(input: Readable) {
+  let sum = 0
+  for await (const line of createInterface(input)) {
+    if (!line) continue
 
-  sum += _.toNumber(`${firstDigit(line)}${lastDigit(line)}`)
+    sum += _.toNumber(`${firstDigit(line)}${lastDigit(line)}`)
+  }
+  return sum
 }
-console.log(sum)

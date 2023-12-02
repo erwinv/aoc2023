@@ -1,4 +1,5 @@
 import { createInterface } from 'node:readline'
+import { Readable } from 'node:stream'
 
 function isGamePossible(cubeSets: string) {
   for (const cubeSet of cubeSets.split('; ')) {
@@ -13,16 +14,18 @@ function isGamePossible(cubeSets: string) {
   return true
 }
 
-let sum = 0
+export async function solve(input: Readable) {
+  let sum = 0
 
-for await (const line of createInterface(process.stdin)) {
-  if (!line) continue
+  for await (const line of createInterface(input)) {
+    if (!line) continue
 
-  const [game, cubeSets] = line.split(': ')
+    const [game, cubeSets] = line.split(': ')
 
-  if (isGamePossible(cubeSets)) {
-    sum += parseInt(game.substring(5))
+    if (isGamePossible(cubeSets)) {
+      sum += parseInt(game.substring(5))
+    }
   }
-}
 
-console.log(sum)
+  return sum
+}

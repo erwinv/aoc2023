@@ -1,4 +1,5 @@
 import { createInterface } from 'node:readline'
+import { Readable } from 'node:stream'
 
 function getGameMinimumSetPower(cubeSets: string) {
   let minRed = 0
@@ -21,14 +22,16 @@ function getGameMinimumSetPower(cubeSets: string) {
   return minRed * minGreen * minBlue
 }
 
-let sum = 0
+export async function solve(input: Readable) {
+  let sum = 0
 
-for await (const line of createInterface(process.stdin)) {
-  if (!line) continue
+  for await (const line of createInterface(input)) {
+    if (!line) continue
 
-  const [, cubeSets] = line.split(': ')
+    const [, cubeSets] = line.split(': ')
 
-  sum += getGameMinimumSetPower(cubeSets)
+    sum += getGameMinimumSetPower(cubeSets)
+  }
+
+  return sum
 }
-
-console.log(sum)
