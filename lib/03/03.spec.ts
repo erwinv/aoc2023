@@ -4,8 +4,6 @@ import { getInputFile } from '../fetchInput.js'
 import { solve as solve1 } from './1.js'
 import { solve as solve2 } from './2.js'
 
-let inputFile = ''
-
 const example = `
 467..114..
 ...*......
@@ -19,6 +17,8 @@ const example = `
 .664.598..`
   .split('\n')
   .map((line) => line + '\n')
+
+let inputFile = ''
 
 beforeAll(async () => {
   inputFile = await getInputFile('3')

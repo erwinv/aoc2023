@@ -17,32 +17,13 @@ export async function solve(input: Readable) {
 
     for (let i = 0; i < line.length; i++) {
       const char = line[i]
-      if (char === '.') {
-        if (currNum.length > 0) {
-          if (isNumAdjacentToSymbol) {
-            const partNum = Number(currNum.join(''))
-            sum += partNum
-          }
-          currNum = []
-          isNumAdjacentToSymbol = false
-        }
-        continue
-      }
 
+      const isBlank = char === '.'
       const isNum = char >= '0' && char <= '9'
-      const isSymbol = !isNum
+      const isSymbol = !isBlank && !isNum
 
       if (isSymbol) {
         currLineSymbolsIdxs.add(i)
-
-        if (currNum.length > 0) {
-          if (isNumAdjacentToSymbol) {
-            const partNum = Number(currNum.join(''))
-            sum += partNum
-          }
-          currNum = []
-          isNumAdjacentToSymbol = false
-        }
 
         if (prevLinePartNums.has(i)) {
           const partNum = prevLinePartNums.get(i)!
@@ -62,7 +43,7 @@ export async function solve(input: Readable) {
             sum += left
           }
         }
-      } else {
+      } else if (isNum) {
         currNum.push(char)
         currLineNums.set(i, currNum)
 
@@ -75,6 +56,15 @@ export async function solve(input: Readable) {
         ) {
           isNumAdjacentToSymbol = true
         }
+      }
+
+      if (!isNum && currNum.length > 0) {
+        if (isNumAdjacentToSymbol) {
+          const partNum = Number(currNum.join(''))
+          sum += partNum
+        }
+        currNum = []
+        isNumAdjacentToSymbol = false
       }
     }
 
