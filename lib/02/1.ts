@@ -1,9 +1,10 @@
 import { createInterface } from 'node:readline'
 import { Readable } from 'node:stream'
+import { split } from '../utils.js'
 
 function isGamePossible(cubeSets: string) {
-  for (const cubeSet of cubeSets.split('; ')) {
-    for (const cubes of cubeSet.split(', ')) {
+  for (const cubeSet of split(cubeSets, '; ')) {
+    for (const cubes of split(cubeSet, ', ')) {
       const n = parseInt(cubes)
       if (cubes.endsWith(' red') && n > 12) return false
       else if (cubes.endsWith(' green') && n > 13) return false

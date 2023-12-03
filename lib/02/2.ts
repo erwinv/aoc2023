@@ -1,13 +1,14 @@
 import { createInterface } from 'node:readline'
 import { Readable } from 'node:stream'
+import { split } from '../utils.js'
 
 function getGameMinimumSetPower(cubeSets: string) {
   let minRed = 0
   let minGreen = 0
   let minBlue = 0
 
-  for (const cubeSet of cubeSets.split('; ')) {
-    for (const cubes of cubeSet.split(', ')) {
+  for (const cubeSet of split(cubeSets, '; ')) {
+    for (const cubes of split(cubeSet, ', ')) {
       const n = parseInt(cubes)
       if (cubes.endsWith(' red') && n > minRed) {
         minRed = n
