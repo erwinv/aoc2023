@@ -1,6 +1,6 @@
 import { createReadStream } from 'node:fs'
-import { Readable } from 'node:stream'
 import { getInputFile } from '../fetchInput.js'
+import { fromText } from '../utils.js'
 import { solve as solve1 } from './1.js'
 import { solve as solve2 } from './2.js'
 
@@ -15,8 +15,6 @@ const example = `
 ......755.
 ...$.*....
 .664.598..`
-  .split('\n')
-  .map((line) => line + '\n')
 
 let inputFile = ''
 
@@ -25,7 +23,7 @@ beforeAll(async () => {
 })
 
 test('day 3 part 1', async () => {
-  await expect(solve1(Readable.from(example))).resolves.toEqual(4361)
+  await expect(solve1(fromText(example))).resolves.toEqual(4361)
 
   await expect(
     solve1(createReadStream(inputFile)),
@@ -33,7 +31,7 @@ test('day 3 part 1', async () => {
 })
 
 test('day 3 part 2', async () => {
-  await expect(solve2(Readable.from(example))).resolves.toEqual(467835)
+  await expect(solve2(fromText(example))).resolves.toEqual(467835)
 
   // await expect(
   //   solve2(createReadStream(inputFile)),
